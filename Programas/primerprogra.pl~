@@ -1,0 +1,4 @@
+lagarto(iguana).
+serpiente(vibora).
+tiene_pelo(conejo).
+come(conejo,zanahorias).

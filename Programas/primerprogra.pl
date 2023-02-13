@@ -1,0 +1,9 @@
+lagarto(iguana).
+lagarto(cocodrilo).
+lagarto(caiman).
+lagarto(camaleon).
+lagarto(diabloespinoso).
+lagarto(gila).
+serpiente(vibora).
+tiene_pelo(conejo).
+come(conejo,zanahorias).
