@@ -62,4 +62,7 @@ Todos los parametros son **atomos**
 > **NOTA** EN PROLOG ES **BASE DE HECHOS** EN VEZ DE *BASE DE DATOS*
 
 
-###
+## 14/02/2023
+
+Hablamos de la evaluación perezosa en la cual se habla de que es una manera en la cual no crea listas o información hasta que se necesita La disciplina de tipos en Java se refiere al conjunto de reglas y restricciones que se aplican a los tipos de datos utilizados en el lenguaje de programación Java. Esto incluye la verificación de tipos en tiempo de compilación y en tiempo de ejecución para garantizar que las operaciones y asignaciones de valores sean coherentes con los tipos de datos correspondientes.
+
