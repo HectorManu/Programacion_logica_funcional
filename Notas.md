@@ -66,3 +66,48 @@ Todos los parametros son **atomos**
 
 Hablamos de la evaluación perezosa en la cual se habla de que es una manera en la cual no crea listas o información hasta que se necesita La disciplina de tipos en Java se refiere al conjunto de reglas y restricciones que se aplican a los tipos de datos utilizados en el lenguaje de programación Java. Esto incluye la verificación de tipos en tiempo de compilación y en tiempo de ejecución para garantizar que las operaciones y asignaciones de valores sean coherentes con los tipos de datos correspondientes.
 
+## 19/02/2023
+
+El día de hoy empezaremos con el microchip consulta el manual [PIC16F84A](https://ww1.microchip.com/downloads/en/devicedoc/35007b.pdf)
+
+Aquí e dificil que pase las 10000 veces de escritura escritura 
+viene de 5 voltsy tiene más característias 
+
+En el indice vermos la organicación de memoria 
+lo que cambia **esque puede llamar a 8 rutinas de manera consecutiva y tiene 5 vectores de introdcucción es decir que cuando se receteaba pues puede obtar por más de 3 inicios teniendo comolimite 5 inicios al mismo tiempo**
+
+- La memoria de programa es de 2 tenemos 2 bancos 
+
+cuando un registro esta lleno sirve para darle datos al otro como lo podemos ver en la siguiente imagen:
+
+Si los dos registro se llaman igual están mapeados es decir si se modifica Status no quiere decir eque tengs 2 estatus distintos es decir que tiene como un espejo que mapea los dato y si las pilas se llaman distinto entonces tenemos que son de **configuración**.
+
+
+- Tenemos más memoria es decir tiens 64 de memoria.
+- pero es no queire decir que tenemos más memoria es decir si se modifica el banco derecho también se modifica en el banco izquierdo
+
+
+### Resumen de instrucciones
+
+aquí tenemos las mismas intrucciones pero cambia el tamaño de las palabras antes teniamios del 0 al 4 y ahora **tenemos del 0 al 6** *aumenta en dos*
+Cuando tenemos el d 
+  d= 0 se almacena en **W**
+  d = 1 se almacena en **f**
+  d = 7 bit se almacena en un no registro de dirección
+
+  ![imagen](/img/2023-02-16-2.png)
+
+
+````
+LIST P=16F84A
+
+MISTATUS EQU 0X03
+MITRISE EQU 0X86 ; SACAR LA INFO
+MIPORTB EQU 0X06
+CONST EQU 0XF0
+
+ORG 0X0
+BSF MISTATUS, 5 ;CAMBIA DE BANCO
+MOVF MISTRISB, 
+
+````
