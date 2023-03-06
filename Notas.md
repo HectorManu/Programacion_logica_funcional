@@ -111,3 +111,18 @@ BSF MISTATUS, 5 ;CAMBIA DE BANCO
 MOVF MISTRISB, 
 
 ````
+
+## 06/03/2023
+
+### Instanciación y Bactracking
+
+- Las variables representan objetos
+- La que lleva guión bajo _ es para indicar el tipo de aridad
+- La instanciación, cuando una variable eseta libre e cuando no tiene valor, cuando se instancia pues cuando 
+- El termiador de prolog solo son conocidas hasta el punto se dice que su ámbito está solamente desde que inicia hasta el punto.
+- La conjunción y la disyunción y la implicación
+- y                   o              (si <> entonces **esa se escribe :-**)
+  - **:-** la cabeza de la regla y el cuerpo de la regla es el sí entonces o se a el ***if***
+- Prolog es un motor de busqueda entonces lo hace como razonamiento hacia atrás o backchageing 
+  - entonces primero recorre uan rama e arbol hasta llegr a la última hoja pues esta va recorriendo
+- 
