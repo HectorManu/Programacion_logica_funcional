@@ -1,0 +1,3 @@
+todosiguales([]).
+todosiguales([_]).
+todosiguales([Elem,Elem|_]).

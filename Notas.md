@@ -125,4 +125,10 @@ MOVF MISTRISB,
   - **:-** la cabeza de la regla y el cuerpo de la regla es el sí entonces o se a el ***if***
 - Prolog es un motor de busqueda entonces lo hace como razonamiento hacia atrás o backchageing 
   - entonces primero recorre uan rama e arbol hasta llegr a la última hoja pues esta va recorriendo
-- 
+
+## 07/03/2023
+
+hoy dejo tarea y vimos como buscar elemtnos en especifico en prolog
+
+
+
