@@ -131,4 +131,17 @@ MOVF MISTRISB,
 hoy dejo tarea y vimos como buscar elemtnos en especifico en prolog
 
 
+## 13/03/2023
+
+Sistema Experto
+SE
+sutiere aconseja eespecializado
+preguntas al usuario
+
+Un sistema experto le pregunta cosas que el sistema va a saber de algo que el usuario no sabe entonces el usuario le pregunta algo que tú no sabes, los sistemas expertos son especializados
+No se puede hacer un sistema experto para todo 
+
+En qué somos expertos 
+
+
 
