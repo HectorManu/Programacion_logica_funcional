@@ -11,12 +11,11 @@ class Application(tk.Frame):
 
     def on_question1_respuesta_changed(self, *args):
         print(f"Seleccionaste: {self.question1_respuesta.get()}")
+        self.respuesta1 = ""
         if self.question1_respuesta.get() == "Sí":
-            print("es si")
+            self.respuesta1 = "Si"
         else:
-            print("es no")
-
-        return self.question1_respuesta.get()
+            self.respuesta1 = "No"
 
         # self.descripcion_label = tk.Label(self, text="Descripción:")
         # self.descripcion_label.pack(side="top")
@@ -37,23 +36,23 @@ class Application(tk.Frame):
     #     print(f"Descripción: {descripcion}")
     #     print(f"Ruta de imagen: {ruta}")
 
-    #     archivo = "datos.pickle"
-    #     try:
-    #         with open(archivo, "rb") as f:
-    #             datos = pickle.load(f)
-    #     except FileNotFoundError:
-    #         datos = {}
+        # archivo = "datos.pickle"
+        # try:
+        #     with open(archivo, "rb") as f:
+        #         datos = pickle.load(f)
+        # except FileNotFoundError:
+        #     datos = {}
 
-    #     # Agregamos la información al diccionario
-    #     datos["descripcion"] = descripcion
-    #     datos["ruta_imagen"] = ruta
+        # # Agregamos la información al diccionario
+        # datos["descripcion"] = descripcion
+        # datos["ruta_imagen"] = ruta
 
-    #     # Guardamos el diccionario en el archivo
-    #     with open(archivo, "wb") as f:
-    #         pickle.dump(datos, f)
+        # # Guardamos el diccionario en el archivo
+        # with open(archivo, "wb") as f:
+        #     pickle.dump(datos, f)
 
-    #     # Mostramos la información guardada
-    #     print(datos)
+        # # Mostramos la información guardada
+        # print(datos)
 
     #     # Eliminamos los widgets de la ventana
     #     self.descripcion_label.destroy()
@@ -62,19 +61,15 @@ class Application(tk.Frame):
     #     self.ruta_text.destroy()
     #     self.guardar_boton.destroy()
 
-
-    def validacion(self):
-        print(self.on_question1_respuesta_changed)
-
     def on_question2_respuesta_changed(self, *args):
         # print(f"Seleccionaste: {self.question2_respuesta.get()}")
-
+        self.respuesta2 = ""
         if self.question2_respuesta.get() == "Menor de edad":
-            print("menor")
+            self.respuesta2 = "Menor de edad"
         elif self.question2_respuesta.get() == "Joven o adolescente":
-            print("joven")
+            self.respuesta2 = "Joven o adolescente"
         elif self.question2_respuesta.get() == "Adulto responsable":
-            print("adulto")
+            self.respuesta2 = "Adulto responsable"
             
 
 
@@ -92,28 +87,78 @@ class Application(tk.Frame):
 
     def on_question3_respuesta_changed(self, *args):
         # print(f"Seleccionaste: {self.question3_respuesta.get()}")
+        self.respuesta3 = ""
         if self.question3_respuesta.get() == "Falla":
-            print("falla")
+            self.respuesta3 = "Falla"
         elif self.question3_respuesta.get() == "Estable":
-            print("estable")
+            self.respuesta3 = "Estable"
         elif self.question3_respuesta.get() == "Excelente":
-            print("Exclente")
+            self.respuesta3 = "Excelente"
 
     def on_question4_respuesta_changed(self, *args):
         # print(f"Seleccionaste: {self.question4_respuesta.get()}")
+        self.respuesta4 = ""
         if self.question4_respuesta.get() == "Más de 4.5":
-            print("mas de 4.5")
+            self.respuesta4 = "Más de 4.5"
         elif self.question4_respuesta.get() == "Entre 4 y 4.5":
-            print("entre")
+            self.respuesta4 = "Entre 4 y 4.5"
         elif self.question4_respuesta.get() == "Menos de 4":
-            print("menos")
+            self.respuesta4 = "Menos de 4"
 
     def on_question5_respuesta_changed(self, *args):
         # print(f"Seleccionaste: {self.question5_respuesta.get()}")
+        self.respuesta5 = ""
         if self.question5_respuesta.get() == "Juegos":
-            print("juegos")
+            self.respuesta5 = "Juegos"
+            self.validacion()
         elif self.question5_respuesta.get() == "Educación":
-            print("educacion")
+            self.respuesta5 = "Educación"
+            self.validacion()
+
+    def validacion(self):
+        archivo = "datos.pickle"
+        try:
+            with open(archivo, "rb") as f:
+                datos = pickle.load(f)
+        except FileNotFoundError:
+            datos = {}
+
+        nombre = "Mighty DOMM"
+        costo = self.respuesta1
+        edad = self.respuesta2
+        estabilidad = self.respuesta3
+        estrellas = self.respuesta4
+        categoria = self.respuesta5
+        descripcion = "Pelea y dispara un conjunto de acción de demonios enmcarcado en el universo de DOOM"
+        ruta = "img/Mighty DOMM"
+
+        # Agregamos la información al diccionario
+        datos[nombre] = {
+            "costo": costo,
+            "edad": edad,
+            "estabilidad": estabilidad,
+            "estrellas": estrellas,
+            "categoria": categoria,
+            "descripcion": descripcion,
+            "ruta": ruta
+        }
+
+        # Guardamos el diccionario en el archivo
+        with open(archivo, "wb") as f:
+            pickle.dump(datos, f)
+
+
+        # # Agregamos la información al diccionario
+        # datos["descripcion"] = descripcion
+        # datos["ruta_imagen"] = ruta
+
+        # # Guardamos el diccionario en el archivo
+        # with open(archivo, "wb") as f:
+        #     pickle.dump(datos, f)
+
+        # # Mostramos la información guardada
+        # print(datos)
+
 
     def create_widgets(self):
 
@@ -133,7 +178,7 @@ class Application(tk.Frame):
 
         self.question1_respuesta_label = tk.Label(self, textvariable=self.question1_respuesta)
         # self.question1_respuesta_label.pack(side="bottom")
-        self.validacion()
+        
 
         # Pregunta 2
         self.question2_respuesta = tk.StringVar(value="Ninguno")
