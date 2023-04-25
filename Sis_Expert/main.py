@@ -1,6 +1,7 @@
 import tkinter as tk
 import pickle
-# from PIL import Image, ImageTk
+from tkinter import messagebox
+from PIL import Image, ImageTk
 
 class Application(tk.Frame):
     def __init__(self, master=None):
@@ -10,56 +11,12 @@ class Application(tk.Frame):
         self.create_widgets()
 
     def on_question1_respuesta_changed(self, *args):
-        print(f"Seleccionaste: {self.question1_respuesta.get()}")
+        # print(f"Seleccionaste: {self.question1_respuesta.get()}")
         self.respuesta1 = ""
         if self.question1_respuesta.get() == "Sí":
             self.respuesta1 = "Si"
         else:
             self.respuesta1 = "No"
-
-        # self.descripcion_label = tk.Label(self, text="Descripción:")
-        # self.descripcion_label.pack(side="top")
-        # self.descripcion_text = tk.Text(self, height=5, width=50)
-        # self.descripcion_text.pack()
-
-        # self.ruta_label = tk.Label(self, text="Ruta de imagen:")
-        # self.ruta_label.pack(side="top")
-        # self.ruta_text = tk.Entry(self)
-        # self.ruta_text.pack()
-
-        # self.guardar_boton = tk.Button(self, text="Guardar", command=self.guardar_info)
-        # self.guardar_boton.pack(side="bottom")
-
-    # def guardar_info(self):
-    #     descripcion = self.descripcion_text.get("1.0", tk.END)
-    #     ruta = self.ruta_text.get()
-    #     print(f"Descripción: {descripcion}")
-    #     print(f"Ruta de imagen: {ruta}")
-
-        # archivo = "datos.pickle"
-        # try:
-        #     with open(archivo, "rb") as f:
-        #         datos = pickle.load(f)
-        # except FileNotFoundError:
-        #     datos = {}
-
-        # # Agregamos la información al diccionario
-        # datos["descripcion"] = descripcion
-        # datos["ruta_imagen"] = ruta
-
-        # # Guardamos el diccionario en el archivo
-        # with open(archivo, "wb") as f:
-        #     pickle.dump(datos, f)
-
-        # # Mostramos la información guardada
-        # print(datos)
-
-    #     # Eliminamos los widgets de la ventana
-    #     self.descripcion_label.destroy()
-    #     self.descripcion_text.destroy()
-    #     self.ruta_label.destroy()
-    #     self.ruta_text.destroy()
-    #     self.guardar_boton.destroy()
 
     def on_question2_respuesta_changed(self, *args):
         # print(f"Seleccionaste: {self.question2_respuesta.get()}")
@@ -70,20 +27,6 @@ class Application(tk.Frame):
             self.respuesta2 = "Joven o adolescente"
         elif self.question2_respuesta.get() == "Adulto responsable":
             self.respuesta2 = "Adulto responsable"
-            
-
-
-        # COMO IMPRIMIR IMAGEN Y TEXTO PARA EL RESULTADO FINAL 
-
-        # imagen = Image.open("ruta/a/la/imagen.png")
-        # imagen = imagen.resize((300, 300))
-        # imagen_tk = ImageTk.PhotoImage(imagen)
-
-        # imagen_label = tk.Label(self, image=imagen_tk)
-        # imagen_label.pack()
-
-        # texto_label = tk.Label(self, text="Texto encima de la imagen")
-        # texto_label.place(relx=0.5, rely=0.1, anchor="center")
 
     def on_question3_respuesta_changed(self, *args):
         # print(f"Seleccionaste: {self.question3_respuesta.get()}")
@@ -115,6 +58,13 @@ class Application(tk.Frame):
             self.respuesta5 = "Educación"
             self.validacion()
 
+    
+    # def guardar_info(self):
+        
+    
+    
+    
+    
     def validacion(self):
         archivo = "datos.pickle"
         try:
@@ -123,51 +73,126 @@ class Application(tk.Frame):
         except FileNotFoundError:
             datos = {}
 
-        nombre = "Mighty DOMM"
-        costo = self.respuesta1
-        edad = self.respuesta2
-        estabilidad = self.respuesta3
-        estrellas = self.respuesta4
-        categoria = self.respuesta5
-        descripcion = "Pelea y dispara un conjunto de acción de demonios enmcarcado en el universo de DOOM"
-        ruta = "img/Mighty DOMM"
 
-        # Agregamos la información al diccionario
-        datos[nombre] = {
-            "costo": costo,
-            "edad": edad,
-            "estabilidad": estabilidad,
-            "estrellas": estrellas,
-            "categoria": categoria,
-            "descripcion": descripcion,
-            "ruta": ruta
-        }
+        # for clave, valor in datos.items():
+        #     if isinstance(valor, list) and len(valor) > 0:
+        #         print(valor[1])
+        #     else:
+        #         print("El valor para la clave {} no es una lista o está vacío".format(clave))
+        #         print("los valores son ",valor[clave])
 
-        # Guardamos el diccionario en el archivo
-        with open(archivo, "wb") as f:
-            pickle.dump(datos, f)
+        
+        
+        
+        # COMPROBAR SI ESTA LO QUE BUSCO DE ACUERDO A LOS PARÁMETROS 
+        for clave, valor in datos.items():
+            # print("AQUÍ SALE ESTA MMDA",valor[0])
+            if valor[0] == self.respuesta1:
+                print(valor[0])
+                None
+            #     if valor[1] == self.respuesta2:
+            #         None
+            #         if valor[2] == self.respuesta3:
+            #             None
+            #             if valor[3] == self.respuesta4:
+            #                 None
+            #                 if valor[4] == self.respuesta5:
+            #                     # SI LLEGO ENTONCES PUES SÍ ESTÁ XD
+            #                     # COMO IMPRIMIR IMAGEN Y TEXTO PARA EL RESULTADO FINAL 
+            
+            #                     # imagen = Image.open("ruta/a/la/imagen.png")
+            #                     # imagen = imagen.resize((300, 300))
+            #                     # imagen_tk = ImageTk.PhotoImage(imagen)
+
+            #                     # imagen_label = tk.Label(self, image=imagen_tk)
+            #                     # imagen_label = tk.Label(self)
+            #                     # imagen_label.pack()
+
+            #                     texto_label = tk.Label(self, text=clave)
+            #                     texto_label.place(relx=0.5, rely=0.1, anchor="center")
+
+            #                     texto_label = tk.Label(self, text=valor[5])
+            #                     texto_label.place(relx=0.5, rely=0.1, anchor="center")
+
+            #                     # Crear un botón
+            #                     button = tk.Button(self, text="Mostrar mensaje", command=lambda: messagebox.showinfo("Mensaje", "¡Hola mundo!"))
+
+            #                     # Ubicar el botón al final de la ventana
+            #                     button.place(side="bottom")
+            #                     None
+            #                 else:
+            #                     # NO HAY
+            #                     ## METODO PARA 
+            #                     None
+            #             else:
+            #                 # NO HAY
+            #                 None
+            #         else:
+            #             # NO HAY
+            #             None
+            #     else:
+            #         # NO HAY
+            #         None
+            else:
+                # NO HAY
+                print("PUES NO HAY PERRO")
+                None
+
+
+
+        # SI NO HAY ENTONCES LLAMAR A LA FUNCIÓN QUE PONE EL TEXTO Y AGREGAR __NOMBRE__, __DESCRIPCIÓN__, __RUTA DE IMAGEN__
+        
+        
+        # DE ESTAR LO QUE BUSCO IMPRIMO UNA IMAGEN Y UN BOTON QUE DESPLIEGA UNA SUBVENTANA FLOTANTE LA CUAL DA UNA EXPLICACIÓN 
+
+
+        
+        # descripcion = "Juego de mundo abierto, supervivencia y construcción que se puede jugar de un solo jugador o multi"
+        # ruta = "/minecraft.jpeg"
+        # nombre = "Minecraft"
+        # atributos = [self.respuesta1,self.respuesta2,self.respuesta3,self.respuesta4,self.respuesta5,descripcion,ruta]
+        
+
 
 
         # # Agregamos la información al diccionario
-        # datos["descripcion"] = descripcion
-        # datos["ruta_imagen"] = ruta
+        # datos[nombre] = atributos
 
         # # Guardamos el diccionario en el archivo
         # with open(archivo, "wb") as f:
         #     pickle.dump(datos, f)
 
-        # # Mostramos la información guardada
-        # print(datos)
+        
+        # self.descripcion_label = tk.Label(self, text="Descripción:")
+        # self.descripcion_label.pack(side="top")
+        # self.descripcion_text = tk.Text(self, height=5, width=50)
+        # self.descripcion_text.pack()
+
+        # self.ruta_label = tk.Label(self, text="Ruta de imagen:")
+        # self.ruta_label.pack(side="top")
+        # self.ruta_text = tk.Entry(self)
+        # self.ruta_text.pack()
+
+        # self.guardar_boton = tk.Button(self, text="Guardar", command=self.guardar_info)
+        # self.guardar_boton.pack(side="bottom")
+
+
+
+
 
 
     def create_widgets(self):
+        # Crear un botón
+        # button = tk.Button(self, text="Mostrar mensaje", command=lambda: messagebox.showinfo("Mensaje", "¡Hola mundo!"))
 
+        # Ubicar el botón al final de la ventana
+        # button.pack(side="bottom")
         # Pregunta 1
 
         self.question1_respuesta = tk.StringVar(value="Ninguno")
         self.question1_respuesta.trace("w", self.on_question1_respuesta_changed)
 
-        self.question1_label = tk.Label(self, text="¿Prefieres una aplicación gratuita o estás dispuesto a pagar por características adicionales?")
+        self.question1_label = tk.Label(self, text="¿Prefieres una aplicación gratuita (SI) o estás dispuesto a pagar por características adicionales (NO)?")
         self.question1_label.pack(side="top")
 
         self.question1_respuesta_azul = tk.Radiobutton(self, text="Sí", variable=self.question1_respuesta, value="Sí")
