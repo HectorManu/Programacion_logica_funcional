@@ -59,29 +59,16 @@ class Application(tk.Frame):
             self.respuesta5 = "Educación"
             self.validacion()
 
-    def print_text_and_image(self, image):
-        # 1. Texto a imprimir
-        text = "Este es un texto que se mostrará al final de la ventana."
-
-        # 2. Crear imagen y ajustar tamaño
-        image = Image.open("./duolingo.jpeg")
-        resized_image = image.resize((150, 150))  # tamaño reducido de la imagen
-        photo = ImageTk.PhotoImage(resized_image)
-
-        # 3. Agregar imagen y texto a la ventana
-        tk.Label(self, image=photo).pack(side="bottom")
-        tk.Label(self, text=text).pack(side="bottom")
-
     def validacion(self):
-        archivo = "datos.pickle"
+        self.archivo = "datos.pickle"
         try:
-            with open(archivo, "rb") as f:
-                datos = pickle.load(f)
+            with open(self.archivo, "rb") as f:
+                self.datos = pickle.load(f)
         except FileNotFoundError:
-            datos = {}
+            self.datos = {}
 
         # COMPROBAR SI ESTA LO QUE BUSCO DE ACUERDO A LOS PARÁMETROS 
-        for clave, valor in datos.items():
+        for clave, valor in self.datos.items():
             # print("AQUÍ SALE ESTA MMDA",valor[0])
             if valor[0] == self.respuesta1:
                 print(valor[0])
@@ -92,29 +79,65 @@ class Application(tk.Frame):
                         if valor[3] == self.respuesta4:
                             print(valor[3])
                             if valor[4] == self.respuesta5:
+                                
                                 print(valor[4])
-                                print(f'El juego que consultaste es: {clave}')
-                                print(f'La descripción es: {valor[5]}')
-                                print(f'La ruta de la imagen es: {valor[6]}')
-                                self.print_text_and_image()
+                                # print(f'Nombre del juego : {clave}')
+                                # print(f'La descripción es: {valor[5]}')
+                                # print(f'La ruta de la imagen es: {valor[6]}')
+
+                                # Crear un nuevo marco para la imagen y el texto
+                                self.descripcion = valor[5]
+                                self.ruta = valor[6]
+                                self.nombre = clave
+                                self.valor = True
+
+                                # break
                             else:
+
                                 ## METODO PARA 
                                 print(f"No coincidio con {self.respuesta5}")
+                                # Crear cuadros de texto y botones
+                                self.valor = False
+                                
+                                # break
                         else:
                             print(f"No coincidio con {self.respuesta4}")
+                            # Crear cuadros de texto y botones
+                            self.valor = False
+                            
+                            # break
                     else:
                         print(f"No coincidio con {self.respuesta3}")
+                        # Crear cuadros de texto y botones
+                        self.valor = False
+                        
+                        # break
                 else:
                     print(f"No coincidio con {self.respuesta2}")
+                    print(f'Lo que hay en el archivo es {valor[1]}')
+                    # Crear cuadros de texto y botones
+                    self.valor = False
+                    
+                    # break
             else:
                 print(f"No coincidio con {self.respuesta1}")
+                # Crear cuadros de texto y botones
+                self.valor = False
+                
+                # break
 
-        # SI NO HAY ENTONCES LLAMAR A LA FUNCIÓN QUE PONE EL TEXTO Y AGREGAR __NOMBRE__, __DESCRIPCIÓN__, __RUTA DE IMAGEN__
+        self.validar_for()
         
-        # DE ESTAR LO QUE BUSCO IMPRIMO UNA IMAGEN Y UN BOTON QUE DESPLIEGA UNA SUBVENTANA FLOTANTE LA CUAL DA UNA EXPLICACIÓN
-
-    def guardar_datos(self):
-        print("Estoy guardando cosas")
+    def validar_for(self):
+        if self.valor == True:
+            self.create_image_frame()
+            # Crear el botón
+            self.create_button() 
+            None
+        else:
+            self.create_textboxes()
+            self.create_buttons()
+            None
 
     def create_widgets(self):
         # Pregunta 1
@@ -202,22 +225,124 @@ class Application(tk.Frame):
 
         self.question5_respuesta_label = tk.Label(self, textvariable=self.question5_respuesta)
 
-# Crear un nuevo marco para la imagen y el texto
+    def print_text_and_image(self, image):
+        # 1. Texto a imprimir
+        text = "Este es un texto que se mostrará al final de la ventana."
+
+        # 2. Crear imagen y ajustar tamaño
+        image = Image.open("./duolingo.jpeg")
+        resized_image = image.resize((150, 150))  # tamaño reducido de la imagen
+        photo = ImageTk.PhotoImage(resized_image)
+
+        # 3. Agregar imagen y texto a la ventana
+        tk.Label(self, image=photo).pack(side="bottom")
+        tk.Label(self, text=text).pack(side="bottom")
+        
+    def create_image_frame(self):
         self.image_frame = tk.Frame(self.master)
         self.image_frame.pack(side="bottom", pady=10)
 
         # Agregar una etiqueta para el texto
-        self.text_label = tk.Label(self.image_frame, text="¡Gracias por responder las preguntas!")
+        self.text_label = tk.Label(self.image_frame, text=self.nombre)
         self.text_label.pack(side="top")
 
         # Cargar una imagen y agregarla al marco
-        image = Image.open("imagen.png")  # Reemplazar "imagen.png" con la ruta de la imagen
+        self.load_and_add_image()
+
+    def load_and_add_image(self):
+        image = Image.open(f".{self.ruta}")  # Reemplazar "imagen.png" con la ruta de la imagen
+        image = image.resize((40, 40))
         photo = ImageTk.PhotoImage(image)
         self.image_label = tk.Label(self.image_frame, image=photo)
         self.image_label.image = photo  # Mantener una referencia a la imagen para evitar que sea eliminada por el recolector de basura
         self.image_label.pack(side="bottom")
-        
 
+    def create_button(self):
+        self.button = tk.Button(self.master, text="Imprimir descripción", command=self.print_text)
+        self.button.pack(side="bottom", pady=10)
+
+        self.regresar_button = tk.Button(self, text="Regresar", command=self.regresar_pri)
+        self.regresar_button.pack(side="bottom")
+
+    def regresar_pri(self):
+        self.regresar_button.pack_forget()
+        self.button.pack_forget()
+        self.image_label.pack_forget()
+        self.text_label.pack_forget()
+        self.image_frame.pack_forget()
+        self.regresar_button.pack_forget()
+
+    def print_text(self):
+        # Crear una nueva ventana
+        self.popup_window = tk.Toplevel()
+        self.popup_window.title("Descripción")
+        self.popup_window.geometry("200x100")
+
+        # Agregar una etiqueta con el texto a imprimir
+        self.print_label = tk.Label(self.popup_window, text=self.descripcion)
+        self.print_label.pack(pady=10)
+
+        # Agregar un botón para cerrar la ventana flotante
+        self.close_button = tk.Button(self.popup_window,text="Cerrar", command=self.popup_window.destroy)
+        self.close_button.pack(pady=10)
+
+    def create_textboxes(self):
+        # Cuadros de texto
+        self.textbox1_label = tk.Label(self, text="Nombre de la aplicación:")
+        self.textbox1_label.pack()
+
+        self.textbox1 = tk.Entry(self)
+        self.textbox1.pack()
+
+        self.textbox2_label = tk.Label(self, text="Inserta descripción:")
+        self.textbox2_label.pack()
+
+        self.textbox2 = tk.Entry(self)
+        self.textbox2.pack()
+
+        self.textbox3_label = tk.Label(self, text="Inserta ruta de la imágen:")
+        self.textbox3_label.pack()
+
+        self.textbox3 = tk.Entry(self)
+        self.textbox3.pack()
+
+    def create_buttons(self):
+        # Botones
+        self.guardar_button = tk.Button(self, text="Guardar", command=self.guardar_respuestas)
+        self.guardar_button.pack(side="left")
+
+        self.regresar_button = tk.Button(self, text="Regresar", command=self.regresar)
+        self.regresar_button.pack(side="right")
+
+    def guardar_respuestas(self):
+
+        # guardar los valores en un diccionario
+        nombre = self.textbox1.get()
+        atributos = [self.respuesta1,self.respuesta2,self.respuesta3,self.respuesta4,self.respuesta5,self.textbox2.get(),self.textbox3.get()]
+
+        # Agregamos la información al diccionario
+        self.datos[nombre] = atributos
+
+        # Guardamos el diccionario en el self.archivo
+        with open(self.archivo, "wb") as f:
+            pickle.dump(self.datos, f)
+
+        self.regresar()
+
+        # Mostrar un mensaje de confirmación
+        messagebox.showinfo("Respuestas guardadas", "Las respuestas han sido guardadas correctamente.")
+
+    def regresar(self):
+        # Ocultar los cuadros de texto y los botones
+        self.textbox1_label.pack_forget()
+        self.textbox1.pack_forget()
+        self.textbox2_label.pack_forget()
+        self.textbox2.pack_forget()
+        self.textbox3_label.pack_forget()
+        self.textbox3.pack_forget()
+        self.guardar_button.pack_forget()
+        self.regresar_button.pack_forget()
+        
 root = tk.Tk()
 app = Application(master=root)
 app.mainloop()
