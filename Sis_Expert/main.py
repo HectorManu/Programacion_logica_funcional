@@ -4,6 +4,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 
 class Application(tk.Frame):
+    
     def __init__(self, master=None):
         super().__init__(master)
         self.master = master
@@ -58,6 +59,19 @@ class Application(tk.Frame):
             self.respuesta5 = "Educación"
             self.validacion()
 
+    def print_text_and_image(self, image):
+        # 1. Texto a imprimir
+        text = "Este es un texto que se mostrará al final de la ventana."
+
+        # 2. Crear imagen y ajustar tamaño
+        image = Image.open("./duolingo.jpeg")
+        resized_image = image.resize((150, 150))  # tamaño reducido de la imagen
+        photo = ImageTk.PhotoImage(resized_image)
+
+        # 3. Agregar imagen y texto a la ventana
+        tk.Label(self, image=photo).pack(side="bottom")
+        tk.Label(self, text=text).pack(side="bottom")
+
     def validacion(self):
         archivo = "datos.pickle"
         try:
@@ -82,6 +96,7 @@ class Application(tk.Frame):
                                 print(f'El juego que consultaste es: {clave}')
                                 print(f'La descripción es: {valor[5]}')
                                 print(f'La ruta de la imagen es: {valor[6]}')
+                                self.print_text_and_image()
                             else:
                                 ## METODO PARA 
                                 print(f"No coincidio con {self.respuesta5}")
@@ -186,6 +201,21 @@ class Application(tk.Frame):
         self.question5_respuesta_rojo.pack(anchor="center")
 
         self.question5_respuesta_label = tk.Label(self, textvariable=self.question5_respuesta)
+
+# Crear un nuevo marco para la imagen y el texto
+        self.image_frame = tk.Frame(self.master)
+        self.image_frame.pack(side="bottom", pady=10)
+
+        # Agregar una etiqueta para el texto
+        self.text_label = tk.Label(self.image_frame, text="¡Gracias por responder las preguntas!")
+        self.text_label.pack(side="top")
+
+        # Cargar una imagen y agregarla al marco
+        image = Image.open("imagen.png")  # Reemplazar "imagen.png" con la ruta de la imagen
+        photo = ImageTk.PhotoImage(image)
+        self.image_label = tk.Label(self.image_frame, image=photo)
+        self.image_label.image = photo  # Mantener una referencia a la imagen para evitar que sea eliminada por el recolector de basura
+        self.image_label.pack(side="bottom")
         
 
 root = tk.Tk()
