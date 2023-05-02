@@ -67,77 +67,161 @@ class Application(tk.Frame):
         except FileNotFoundError:
             self.datos = {}
 
+        
+        false = []
+
         # COMPROBAR SI ESTA LO QUE BUSCO DE ACUERDO A LOS PARÁMETROS 
         for clave, valor in self.datos.items():
-            # print("AQUÍ SALE ESTA MMDA",valor[0])
-            if valor[0] == self.respuesta1:
-                print(valor[0])
-                if valor[1] == self.respuesta2:
-                    print(valor[1])
-                    if valor[2] == self.respuesta3:
-                        print(valor[2])
-                        if valor[3] == self.respuesta4:
-                            print(valor[3])
-                            if valor[4] == self.respuesta5:
+            self.valores_recorridos(clave,valor)
+            # print(self.valor)
+            print(f"aquí es  lo que determinará la parte de {self.valor}")  
+            false.append(self.valor)
+
+        print(false)
+
+        if any(false):
+            None
+        else:
+            
+        
+            self.validar_for()
+            
+            # if self.valores_recorridos(clave, valor) == False:
+            #     break
+        # print(f"aquí es  lo que determinará la parte de {self.valor}")
+        # if hola == "False":
+        #     self.validar_for()
+        # if self.valor == False:
+        #     self.validar_for()
+
+        #     if valor[0] == self.respuesta1:
+        #         print(valor[0])
+        #         if valor[1] == self.respuesta2:
+        #             print(valor[1])
+        #             if valor[2] == self.respuesta3:
+        #                 print(valor[2])
+        #                 if valor[3] == self.respuesta4:
+        #                     print(valor[3])
+        #                     if valor[4] == self.respuesta5:
                                 
-                                print(valor[4])
-                                # print(f'Nombre del juego : {clave}')
-                                # print(f'La descripción es: {valor[5]}')
-                                # print(f'La ruta de la imagen es: {valor[6]}')
+        #                         print(valor[4])
+        #                         # print(f'Nombre del juego : {clave}')
+        #                         # print(f'La descripción es: {valor[5]}')
+        #                         # print(f'La ruta de la imagen es: {valor[6]}')
 
-                                # Crear un nuevo marco para la imagen y el texto
-                                self.descripcion = valor[5]
-                                self.ruta = valor[6]
-                                self.nombre = clave
-                                self.valor = True
+        #                         # Crear un nuevo marco para la imagen y el texto
+        #                         self.descripcion = valor[5]
+        #                         self.ruta = valor[6]
+        #                         self.nombre = clave
+        #                         self.valor = True
 
-                                # break
-                            else:
+        #                         # break
+        #                     else:
 
-                                ## METODO PARA 
-                                print(f"No coincidio con {self.respuesta5}")
-                                # Crear cuadros de texto y botones
-                                self.valor = False
+        #                         ## METODO PARA 
+        #                         print(f"No coincidio con {self.respuesta5}")
+        #                         # Crear cuadros de texto y botones
+        #                         self.valor = False
                                 
-                                # break
+        #                         # break
+        #                 else:
+        #                     print(f"No coincidio con {self.respuesta4}")
+        #                     # Crear cuadros de texto y botones
+        #                     self.valor = False
+                            
+        #                     # break
+        #             else:
+        #                 print(f"No coincidio con {self.respuesta3}")
+        #                 # Crear cuadros de texto y botones
+        #                 self.valor = False
+                        
+        #                 # break
+        #         else:
+        #             print(f"No coincidio con {self.respuesta2}")
+        #             print(f'Lo que hay en el archivo es {valor[1]}')
+        #             # Crear cuadros de texto y botones
+        #             self.valor = False
+                    
+        #             # break
+        #     else:
+        #         print(f"No coincidio con {self.respuesta1}")
+        #         # Crear cuadros de texto y botones
+        #         self.valor = False
+                
+        #         # break
+
+        # print(f"el valor {self.valor} fue antes")
+        # self.validar_for()
+        
+    def valores_recorridos(self, clave, valor):
+        print(clave)
+        print(valor)
+        if valor[0] == self.respuesta1:
+            print(valor[0])
+            if valor[1] == self.respuesta2:
+                print(valor[1])
+                if valor[2] == self.respuesta3:
+                    print(valor[2])
+                    if valor[3] == self.respuesta4:
+                        print(valor[3])
+                        if valor[4] == self.respuesta5:
+                            
+                            print(valor[4])
+                            self.descripcion = valor[5]
+                            self.ruta = valor[6]
+                            self.nombre = clave
+                            self.valor = True
+                            self.validar_for()
+                            return True
                         else:
-                            print(f"No coincidio con {self.respuesta4}")
+
+                            ## METODO PARA 
+                            # print(f"No coincidio con {self.respuesta5}")
                             # Crear cuadros de texto y botones
                             self.valor = False
                             
-                            # break
+                            # return False
                     else:
-                        print(f"No coincidio con {self.respuesta3}")
+                        # print(f"No coincidio con {self.respuesta4}")
                         # Crear cuadros de texto y botones
                         self.valor = False
                         
-                        # break
+                        # return False
                 else:
-                    print(f"No coincidio con {self.respuesta2}")
-                    print(f'Lo que hay en el archivo es {valor[1]}')
+                    # print(f"No coincidio con {self.respuesta3}")
                     # Crear cuadros de texto y botones
                     self.valor = False
                     
-                    # break
+                    # return False
             else:
-                print(f"No coincidio con {self.respuesta1}")
+                # print(f"No coincidio con {self.respuesta2}")
+                # print(f'Lo que hay en el archivo es {valor[1]}')
                 # Crear cuadros de texto y botones
                 self.valor = False
                 
-                # break
-
-        self.validar_for()
+                # return False
+        else:
+            # print(f"No coincidio con {self.respuesta1}")
+            # Crear cuadros de texto y botones
+            self.valor = False
+            # self.validar_for()
+            # return False
         
+        # print(f"el valor {self.valor} fue antes")
+        # self.validar_for()
+
+
+    
     def validar_for(self):
+        print(f"el valor valor paso {self.valor}")
         if self.valor == True:
             self.create_image_frame()
             # Crear el botón
             self.create_button() 
-            None
+            
         else:
             self.create_textboxes()
             self.create_buttons()
-            None
 
     def create_widgets(self):
         # Pregunta 1
@@ -279,7 +363,7 @@ class Application(tk.Frame):
         self.popup_window.geometry("200x100")
 
         # Agregar una etiqueta con el texto a imprimir
-        self.print_label = tk.Label(self.popup_window, text=self.descripcion)
+        self.print_label = tk.Label(self.popup_window, text=self.descripcion, wraplength=180)
         self.print_label.pack(pady=10)
 
         # Agregar un botón para cerrar la ventana flotante
