@@ -4,7 +4,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 
 class Application(tk.Frame):
-    
+
     def __init__(self, master=None):
         super().__init__(master)
         self.master = master
@@ -66,7 +66,6 @@ class Application(tk.Frame):
                 self.datos = pickle.load(f)
         except FileNotFoundError:
             self.datos = {}
-
         
         false = []
 
@@ -82,76 +81,7 @@ class Application(tk.Frame):
         if any(false):
             None
         else:
-            
-        
             self.validar_for()
-            
-            # if self.valores_recorridos(clave, valor) == False:
-            #     break
-        # print(f"aquí es  lo que determinará la parte de {self.valor}")
-        # if hola == "False":
-        #     self.validar_for()
-        # if self.valor == False:
-        #     self.validar_for()
-
-        #     if valor[0] == self.respuesta1:
-        #         print(valor[0])
-        #         if valor[1] == self.respuesta2:
-        #             print(valor[1])
-        #             if valor[2] == self.respuesta3:
-        #                 print(valor[2])
-        #                 if valor[3] == self.respuesta4:
-        #                     print(valor[3])
-        #                     if valor[4] == self.respuesta5:
-                                
-        #                         print(valor[4])
-        #                         # print(f'Nombre del juego : {clave}')
-        #                         # print(f'La descripción es: {valor[5]}')
-        #                         # print(f'La ruta de la imagen es: {valor[6]}')
-
-        #                         # Crear un nuevo marco para la imagen y el texto
-        #                         self.descripcion = valor[5]
-        #                         self.ruta = valor[6]
-        #                         self.nombre = clave
-        #                         self.valor = True
-
-        #                         # break
-        #                     else:
-
-        #                         ## METODO PARA 
-        #                         print(f"No coincidio con {self.respuesta5}")
-        #                         # Crear cuadros de texto y botones
-        #                         self.valor = False
-                                
-        #                         # break
-        #                 else:
-        #                     print(f"No coincidio con {self.respuesta4}")
-        #                     # Crear cuadros de texto y botones
-        #                     self.valor = False
-                            
-        #                     # break
-        #             else:
-        #                 print(f"No coincidio con {self.respuesta3}")
-        #                 # Crear cuadros de texto y botones
-        #                 self.valor = False
-                        
-        #                 # break
-        #         else:
-        #             print(f"No coincidio con {self.respuesta2}")
-        #             print(f'Lo que hay en el archivo es {valor[1]}')
-        #             # Crear cuadros de texto y botones
-        #             self.valor = False
-                    
-        #             # break
-        #     else:
-        #         print(f"No coincidio con {self.respuesta1}")
-        #         # Crear cuadros de texto y botones
-        #         self.valor = False
-                
-        #         # break
-
-        # print(f"el valor {self.valor} fue antes")
-        # self.validar_for()
         
     def valores_recorridos(self, clave, valor):
         print(clave)
@@ -174,43 +104,15 @@ class Application(tk.Frame):
                             self.validar_for()
                             return True
                         else:
-
-                            ## METODO PARA 
-                            # print(f"No coincidio con {self.respuesta5}")
-                            # Crear cuadros de texto y botones
                             self.valor = False
-                            
-                            # return False
                     else:
-                        # print(f"No coincidio con {self.respuesta4}")
-                        # Crear cuadros de texto y botones
                         self.valor = False
-                        
-                        # return False
                 else:
-                    # print(f"No coincidio con {self.respuesta3}")
-                    # Crear cuadros de texto y botones
                     self.valor = False
-                    
-                    # return False
             else:
-                # print(f"No coincidio con {self.respuesta2}")
-                # print(f'Lo que hay en el archivo es {valor[1]}')
-                # Crear cuadros de texto y botones
                 self.valor = False
-                
-                # return False
         else:
-            # print(f"No coincidio con {self.respuesta1}")
-            # Crear cuadros de texto y botones
             self.valor = False
-            # self.validar_for()
-            # return False
-        
-        # print(f"el valor {self.valor} fue antes")
-        # self.validar_for()
-
-
     
     def validar_for(self):
         print(f"el valor valor paso {self.valor}")
@@ -315,7 +217,7 @@ class Application(tk.Frame):
 
         # 2. Crear imagen y ajustar tamaño
         image = Image.open("./duolingo.jpeg")
-        resized_image = image.resize((150, 150))  # tamaño reducido de la imagen
+        resized_image = image.resize((350, 350))  # tamaño reducido de la imagen
         photo = ImageTk.PhotoImage(resized_image)
 
         # 3. Agregar imagen y texto a la ventana
