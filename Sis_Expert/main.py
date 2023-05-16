@@ -118,6 +118,7 @@ class Application(tk.Frame):
         print(f"el valor valor paso {self.valor}")
         if self.valor == True:
             self.create_image_frame()
+            
             # Crear el botón
             self.create_button() 
             
@@ -132,13 +133,16 @@ class Application(tk.Frame):
         self.question1_respuesta.trace("w", self.on_question1_respuesta_changed)
 
         self.question1_label = tk.Label(self, text="¿Prefieres una aplicación gratuita (SI) o estás dispuesto a pagar por características adicionales (NO)?")
+        self.question1_label.config(font=("Arial", 14, "bold")) 
         self.question1_label.pack(side="top")
 
-        self.question1_respuesta_azul = tk.Radiobutton(self, text="Sí", variable=self.question1_respuesta, value="Sí")
-        self.question1_respuesta_azul.pack(anchor="center")
+        self.question1_respuesta_si = tk.Radiobutton(self, text="Sí", variable=self.question1_respuesta, value="Sí")
+        self.question1_respuesta_si.config(font=("Arial", 12))
+        self.question1_respuesta_si.pack(anchor="center")
 
-        self.question1_respuesta_rojo = tk.Radiobutton(self, text="No", variable=self.question1_respuesta, value="No")
-        self.question1_respuesta_rojo.pack(anchor="center")
+        self.question1_respuesta_no = tk.Radiobutton(self, text="No", variable=self.question1_respuesta, value="No")
+        self.question1_respuesta_no.config(font=("Arial", 12))
+        self.question1_respuesta_no.pack(anchor="center")
 
         self.question1_respuesta_label = tk.Label(self, textvariable=self.question1_respuesta)
 
@@ -147,16 +151,20 @@ class Application(tk.Frame):
         self.question2_respuesta.trace("w", self.on_question2_respuesta_changed)
 
         self.question2_label = tk.Label(self, text="¿Qué edad tiene el usuario?")
+        self.question2_label.config(font=("Arial", 14, "bold")) 
         self.question2_label.pack(side="top")
 
-        self.question2_respuesta_azul = tk.Radiobutton(self, text="Menor de edad", variable=self.question2_respuesta, value="Menor de edad")
-        self.question2_respuesta_azul.pack(anchor="center")
+        self.question2_respuesta_menor = tk.Radiobutton(self, text="Menor de edad", variable=self.question2_respuesta, value="Menor de edad")
+        self.question2_respuesta_menor.config(font=("Arial", 12))
+        self.question2_respuesta_menor.pack(anchor="center")
 
-        self.question2_respuesta_rojo = tk.Radiobutton(self, text="Joven o adolescente", variable=self.question2_respuesta, value="Joven o adolescente")
-        self.question2_respuesta_rojo.pack(anchor="center")
+        self.question2_respuesta_joven = tk.Radiobutton(self, text="Joven o adolescente", variable=self.question2_respuesta, value="Joven o adolescente")
+        self.question2_respuesta_joven.config(font=("Arial", 12))
+        self.question2_respuesta_joven.pack(anchor="center")
 
-        self.question2_respuesta_rojo = tk.Radiobutton(self, text="Adulto responsable", variable=self.question2_respuesta, value="Adulto responsable")
-        self.question2_respuesta_rojo.pack(anchor="center")
+        self.question2_respuesta_adulto = tk.Radiobutton(self, text="Adulto responsable", variable=self.question2_respuesta, value="Adulto responsable")
+        self.question2_respuesta_adulto.config(font=("Arial", 12))
+        self.question2_respuesta_adulto.pack(anchor="center")
 
         self.question2_respuesta_label = tk.Label(self, textvariable=self.question2_respuesta)
 
@@ -165,16 +173,20 @@ class Application(tk.Frame):
         self.question3_respuesta.trace("w", self.on_question3_respuesta_changed)
 
         self.question3_label = tk.Label(self, text="¿Qué tan estable es tu internet?")
+        self.question3_label.config(font=("Arial", 14, "bold")) 
         self.question3_label.pack(side="top")
 
-        self.question3_respuesta_azul = tk.Radiobutton(self, text="Falla", variable=self.question3_respuesta, value="Falla")
-        self.question3_respuesta_azul.pack(anchor="center")
+        self.question3_respuesta_falla = tk.Radiobutton(self, text="Falla", variable=self.question3_respuesta, value="Falla")
+        self.question3_respuesta_falla.config(font=("Arial", 12))
+        self.question3_respuesta_falla.pack(anchor="center")
 
-        self.question3_respuesta_rojo = tk.Radiobutton(self, text="Estable", variable=self.question3_respuesta, value="Estable")
-        self.question3_respuesta_rojo.pack(anchor="center")
+        self.question3_respuesta_estable = tk.Radiobutton(self, text="Estable", variable=self.question3_respuesta, value="Estable")
+        self.question3_respuesta_estable.config(font=("Arial", 12))
+        self.question3_respuesta_estable.pack(anchor="center")
 
-        self.question3_respuesta_rojo = tk.Radiobutton(self, text="Excelente", variable=self.question3_respuesta, value="Excelente")
-        self.question3_respuesta_rojo.pack(anchor="center")
+        self.question3_respuesta_excelente = tk.Radiobutton(self, text="Excelente", variable=self.question3_respuesta, value="Excelente")
+        self.question3_respuesta_excelente.config(font=("Arial", 12))
+        self.question3_respuesta_excelente.pack(anchor="center")
 
         self.question3_respuesta_label = tk.Label(self, textvariable=self.question3_respuesta)
 
@@ -183,16 +195,20 @@ class Application(tk.Frame):
         self.question4_respuesta.trace("w", self.on_question4_respuesta_changed)
 
         self.question4_label = tk.Label(self, text="¿Cuántas estrellas tendría que tener la aplicación para que la descargues, considerando que 5 es el más alto?")
+        self.question4_label.config(font=("Arial", 14, "bold")) 
         self.question4_label.pack(side="top")
 
-        self.question4_respuesta_azul = tk.Radiobutton(self, text="Menos de 4", variable=self.question4_respuesta, value="Menos de 4")
-        self.question4_respuesta_azul.pack(anchor="center")
+        self.question4_respuesta_menosde4 = tk.Radiobutton(self, text="Menos de 4", variable=self.question4_respuesta, value="Menos de 4")
+        self.question4_respuesta_menosde4.config(font=("Arial", 12))
+        self.question4_respuesta_menosde4.pack(anchor="center")
 
-        self.question4_respuesta_rojo = tk.Radiobutton(self, text="Entre 4 y 4.5", variable=self.question4_respuesta, value="Entre 4 y 4.5")
-        self.question4_respuesta_rojo.pack(anchor="center")
+        self.question4_respuesta_entre = tk.Radiobutton(self, text="Entre 4 y 4.5", variable=self.question4_respuesta, value="Entre 4 y 4.5")
+        self.question4_respuesta_entre.config(font=("Arial", 12))
+        self.question4_respuesta_entre.pack(anchor="center")
 
-        self.question4_respuesta_rojo = tk.Radiobutton(self, text="Más de 4.5", variable=self.question4_respuesta, value="Más de 4.5")
-        self.question4_respuesta_rojo.pack(anchor="center")
+        self.question4_respuesta_masde45 = tk.Radiobutton(self, text="Más de 4.5", variable=self.question4_respuesta, value="Más de 4.5")
+        self.question4_respuesta_masde45.config(font=("Arial", 12))
+        self.question4_respuesta_masde45.pack(anchor="center")
 
         self.question4_respuesta_label = tk.Label(self, textvariable=self.question4_respuesta)
 
@@ -201,28 +217,18 @@ class Application(tk.Frame):
         self.question5_respuesta.trace("w", self.on_question5_respuesta_changed)
 
         self.question5_label = tk.Label(self, text="¿Qué tipo de categoría buscas?")
+        self.question5_label.config(font=("Arial", 14, "bold")) 
         self.question5_label.pack(side="top")
 
-        self.question5_respuesta_azul = tk.Radiobutton(self, text="Juegos", variable=self.question5_respuesta, value="Juegos")
-        self.question5_respuesta_azul.pack(anchor="center")
+        self.question5_respuesta_juegos = tk.Radiobutton(self, text="Juegos", variable=self.question5_respuesta, value="Juegos")
+        self.question5_respuesta_juegos.config(font=("Arial", 12))
+        self.question5_respuesta_juegos.pack(anchor="center")
 
-        self.question5_respuesta_rojo = tk.Radiobutton(self, text="Educación", variable=self.question5_respuesta, value="Educación")
-        self.question5_respuesta_rojo.pack(anchor="center")
+        self.question5_respuesta_edu = tk.Radiobutton(self, text="Educación", variable=self.question5_respuesta, value="Educación")
+        self.question5_respuesta_edu.config(font=("Arial", 12))
+        self.question5_respuesta_edu.pack(anchor="center")
 
         self.question5_respuesta_label = tk.Label(self, textvariable=self.question5_respuesta)
-
-    def print_text_and_image(self, image):
-        # 1. Texto a imprimir
-        text = "Este es un texto que se mostrará al final de la ventana."
-
-        # 2. Crear imagen y ajustar tamaño
-        image = Image.open("./duolingo.jpeg")
-        resized_image = image.resize((350, 350))  # tamaño reducido de la imagen
-        photo = ImageTk.PhotoImage(resized_image)
-
-        # 3. Agregar imagen y texto a la ventana
-        tk.Label(self, image=photo).pack(side="bottom")
-        tk.Label(self, text=text).pack(side="bottom")
         
     def create_image_frame(self):
         self.image_frame = tk.Frame(self.master)
@@ -237,20 +243,26 @@ class Application(tk.Frame):
 
     def load_and_add_image(self):
         image = Image.open(f".{self.ruta}")  # Reemplazar "imagen.png" con la ruta de la imagen
-        image = image.resize((40, 40))
+        image = image.resize((100, 100))
         photo = ImageTk.PhotoImage(image)
         self.image_label = tk.Label(self.image_frame, image=photo)
         self.image_label.image = photo  # Mantener una referencia a la imagen para evitar que sea eliminada por el recolector de basura
-        self.image_label.pack(side="bottom")
+        self.image_label.pack(side="top")
 
     def create_button(self):
         self.button = tk.Button(self.master, text="Imprimir descripción", command=self.print_text)
-        self.button.pack(side="bottom", pady=10)
+        self.button.pack(side="top")
 
         self.regresar_button = tk.Button(self, text="Regresar", command=self.regresar_pri)
-        self.regresar_button.pack(side="bottom")
+        self.regresar_button.pack(side="top")
 
     def regresar_pri(self):
+        # Restablecer la variable a su valor predeterminado
+        self.question1_respuesta.set("Ninguno")
+        self.question2_respuesta.set("Ninguno")
+        self.question3_respuesta.set("Ninguno")
+        self.question4_respuesta.set("Ninguno")
+        self.question5_respuesta.set("Ninguno")
         self.regresar_button.pack_forget()
         self.button.pack_forget()
         self.image_label.pack_forget()
