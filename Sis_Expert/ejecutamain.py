@@ -16,21 +16,23 @@ def close_window():
 window = tk.Tk()
 
 # Configurar la ventana
-window.title("Ventana Inicial")
+window.title("Ventana de Inicio")
+window.configure(bg="#F0F0F0")
 
-descripcion = """Este sistema utiliza un enfoque inteligente para recomendar aplicaciones de juegos y educativas. Se basa en tres factores principales: puntaje de estrellas, velocidad de internet y restricciones de edad. El puntaje de estrellas indica la calidad y popularidad de una aplicación. Cuanto mayor sea el puntaje, mejor será la experiencia. La velocidad de internet se considera para asegurar una experiencia fluida y sin interrupciones al utilizar las aplicaciones. Además, se tienen en cuenta las restricciones de edad para garantizar que las aplicaciones sean adecuadas para el usuario. Al presionar 'Continuar', el programa iniciará y presentará recomendaciones personalizadas basadas en estos criterios, brindando a los usuarios una selección óptima de aplicaciones de juegos y educación". Una vez que presiones "Continuar" en la interfaz, el programa se iniciará y comenzará a proporcionar las recomendaciones según los criterios mencionados."""
+descripcion = """Este sistema utiliza un enfoque inteligente para recomendar aplicaciones de juegos y educativas.\n\nSe basa en tres factores principales:\n\n• Puntaje de estrellas, velocidad de internet y restricciones de edad.\n\nEl puntaje de estrellas indica la calidad y popularidad de una aplicación. Cuanto mayor sea el puntaje, mejor será la experiencia.\n\nLa velocidad de internet se considera para asegurar una experiencia fluida y sin interrupciones al utilizar las aplicaciones.\n\nAdemás, se tienen en cuenta las restricciones de edad para garantizar que las aplicaciones sean adecuadas para el usuario.\n\nAl presionar 'Continuar', el programa iniciará y presentará recomendaciones personalizadas basadas en estos criterios, brindando a los usuarios una selección óptima de aplicaciones de juegos y educación.\n\nUna vez que presiones 'Continuar' en la interfaz, el programa se iniciará y comenzará a proporcionar las recomendaciones según los criterios mencionados."""
 
 # Crear un widget de texto
-text_label = tk.Label(window, text=descripcion, font=("Arial", 12, "bold"), wraplength=400, justify="center")
-text_label.pack()
+text_label = tk.Label(window, text=descripcion, font=("Arial", 12), wraplength=400, justify="left", bg="#F0F0F0")
+text_label.pack(pady=20, padx=10)
 
 # Crear un botón para ejecutar el otro programa
-execute_button = tk.Button(window, text="Continuar", command=execute_program)
-execute_button.pack()
+execute_button = tk.Button(window, text="Continuar", command=execute_program, font=("Arial", 12, "bold"), bg="#4CAF50", fg="white", relief="flat", width=10)
+execute_button.pack(pady=10)
 
 # Crear un botón para cerrar la ventana
-close_button = tk.Button(window, text="Cerrar", command=close_window)
-close_button.pack()
+close_button = tk.Button(window, text="Cerrar", command=close_window, font=("Arial", 12), bg="#FF5252", fg="white", relief="flat", width=10)
+close_button.pack(pady=5)
 
 # Mostrar la ventana
 window.mainloop()
+

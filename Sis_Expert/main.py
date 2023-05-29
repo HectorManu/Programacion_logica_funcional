@@ -55,10 +55,12 @@ class Application(tk.Frame):
         self.respuesta5 = ""
         if self.question5_respuesta.get() == "Juegos":
             self.respuesta5 = "Juegos"
-            self.validacion()
+            # self.boton_para_validacion()
         elif self.question5_respuesta.get() == "Educación":
             self.respuesta5 = "Educación"
-            self.validacion()
+            # self.boton_para_validacion()
+
+    # def boton_para_validacion(self):
 
     def validacion(self):
         self.archivo = "datos.pickle"
@@ -148,50 +150,6 @@ class Application(tk.Frame):
 
         self.question1_respuesta_label = tk.Label(self, textvariable=self.question1_respuesta)
 
-        # Pregunta 2
-        self.question2_respuesta = tk.StringVar(value="Ninguno")
-        self.question2_respuesta.trace("w", self.on_question2_respuesta_changed)
-
-        self.question2_label = tk.Label(self, text="¿Qué edad tiene el usuario?")
-        self.question2_label.config(font=("Arial", 11, "bold")) 
-        self.question2_label.pack(side="top")
-
-        self.question2_respuesta_menor = tk.Radiobutton(self, text="Menor de edad", variable=self.question2_respuesta, value="Menor de edad")
-        self.question2_respuesta_menor.config(font=("Arial", 10))
-        self.question2_respuesta_menor.pack(anchor="center")
-
-        self.question2_respuesta_joven = tk.Radiobutton(self, text="Joven o adolescente", variable=self.question2_respuesta, value="Joven o adolescente")
-        self.question2_respuesta_joven.config(font=("Arial", 10))
-        self.question2_respuesta_joven.pack(anchor="center")
-
-        self.question2_respuesta_adulto = tk.Radiobutton(self, text="Adulto responsable", variable=self.question2_respuesta, value="Adulto responsable")
-        self.question2_respuesta_adulto.config(font=("Arial", 10))
-        self.question2_respuesta_adulto.pack(anchor="center")
-
-        self.question2_respuesta_label = tk.Label(self, textvariable=self.question2_respuesta)
-
-        # # Pregunta 3
-        self.question3_respuesta = tk.StringVar(value="Ninguno")
-        self.question3_respuesta.trace("w", self.on_question3_respuesta_changed)
-
-        self.question3_label = tk.Label(self, text="¿Qué tan estable es tu internet?")
-        self.question3_label.config(font=("Arial", 11, "bold")) 
-        self.question3_label.pack(side="top")
-
-        self.question3_respuesta_falla = tk.Radiobutton(self, text="Falla", variable=self.question3_respuesta, value="Falla")
-        self.question3_respuesta_falla.config(font=("Arial", 10))
-        self.question3_respuesta_falla.pack(anchor="center")
-
-        self.question3_respuesta_estable = tk.Radiobutton(self, text="Estable", variable=self.question3_respuesta, value="Estable")
-        self.question3_respuesta_estable.config(font=("Arial", 10))
-        self.question3_respuesta_estable.pack(anchor="center")
-
-        self.question3_respuesta_excelente = tk.Radiobutton(self, text="Excelente", variable=self.question3_respuesta, value="Excelente")
-        self.question3_respuesta_excelente.config(font=("Arial", 10))
-        self.question3_respuesta_excelente.pack(anchor="center")
-
-        self.question3_respuesta_label = tk.Label(self, textvariable=self.question3_respuesta)
-
         # Pregunta 4
         self.question4_respuesta = tk.StringVar(value="Ninguno")
         self.question4_respuesta.trace("w", self.on_question4_respuesta_changed)
@@ -214,6 +172,51 @@ class Application(tk.Frame):
 
         self.question4_respuesta_label = tk.Label(self, textvariable=self.question4_respuesta)
 
+        # Pregunta 3
+        self.question3_respuesta = tk.StringVar(value="Ninguno")
+        self.question3_respuesta.trace("w", self.on_question3_respuesta_changed)
+
+        self.question3_label = tk.Label(self, text="¿Qué tan estable es tu internet?")
+        self.question3_label.config(font=("Arial", 11, "bold")) 
+        self.question3_label.pack(side="top")
+
+        self.question3_respuesta_falla = tk.Radiobutton(self, text="Falla", variable=self.question3_respuesta, value="Falla")
+        self.question3_respuesta_falla.config(font=("Arial", 10))
+        self.question3_respuesta_falla.pack(anchor="center")
+
+        self.question3_respuesta_estable = tk.Radiobutton(self, text="Estable", variable=self.question3_respuesta, value="Estable")
+        self.question3_respuesta_estable.config(font=("Arial", 10))
+        self.question3_respuesta_estable.pack(anchor="center")
+
+        self.question3_respuesta_excelente = tk.Radiobutton(self, text="Excelente", variable=self.question3_respuesta, value="Excelente")
+        self.question3_respuesta_excelente.config(font=("Arial", 10))
+        self.question3_respuesta_excelente.pack(anchor="center")
+
+        self.question3_respuesta_label = tk.Label(self, textvariable=self.question3_respuesta)
+
+
+        # Pregunta 2
+        self.question2_respuesta = tk.StringVar(value="Ninguno")
+        self.question2_respuesta.trace("w", self.on_question2_respuesta_changed)
+
+        self.question2_label = tk.Label(self, text="¿Qué edad tiene el usuario?")
+        self.question2_label.config(font=("Arial", 11, "bold")) 
+        self.question2_label.pack(side="top")
+
+        self.question2_respuesta_menor = tk.Radiobutton(self, text="Menor de edad", variable=self.question2_respuesta, value="Menor de edad")
+        self.question2_respuesta_menor.config(font=("Arial", 10))
+        self.question2_respuesta_menor.pack(anchor="center")
+
+        self.question2_respuesta_joven = tk.Radiobutton(self, text="Joven o adolescente", variable=self.question2_respuesta, value="Joven o adolescente")
+        self.question2_respuesta_joven.config(font=("Arial", 10))
+        self.question2_respuesta_joven.pack(anchor="center")
+
+        self.question2_respuesta_adulto = tk.Radiobutton(self, text="Adulto responsable", variable=self.question2_respuesta, value="Adulto responsable")
+        self.question2_respuesta_adulto.config(font=("Arial", 10))
+        self.question2_respuesta_adulto.pack(anchor="center")
+
+        self.question2_respuesta_label = tk.Label(self, textvariable=self.question2_respuesta)
+
         # Pregunta 5
         self.question5_respuesta = tk.StringVar(value="Ninguno")
         self.question5_respuesta.trace("w", self.on_question5_respuesta_changed)
@@ -231,10 +234,19 @@ class Application(tk.Frame):
         self.question5_respuesta_edu.pack(anchor="center")
 
         self.question5_respuesta_label = tk.Label(self, textvariable=self.question5_respuesta)
+
+            # Botón para validación
+        self.validacion_button_frame = tk.Frame(self)
+        self.validacion_button_frame.pack(pady=10)
+
+        self.validacion_button = tk.Button(self.validacion_button_frame, text="Buscar", command=self.validacion,  bg="#4CAF50", fg="white", relief="flat", width=10)
+        self.validacion_button.config(font=("Arial", 10))
+        self.validacion_button.pack()
+        
         
     def create_image_frame(self):
         self.image_frame = tk.Frame(self.master)
-        self.image_frame.pack(side="bottom", pady=10)
+        self.image_frame.pack(side="bottom", pady=10, fill="both", expand=True)
 
         # Agregar una etiqueta para el texto
         self.text_label = tk.Label(self.image_frame, text=self.nombre)
@@ -244,18 +256,18 @@ class Application(tk.Frame):
         self.load_and_add_image()
 
     def load_and_add_image(self):
-        image = Image.open(f".{self.ruta}")  # Reemplazar "imagen.png" con la ruta de la imagen
-        image = image.resize((200, 200))
+        image = Image.open(f"./{self.ruta}")  # Reemplazar "imagen.png" con la ruta de la imagen
+        image = image.resize((125, 125))
         photo = ImageTk.PhotoImage(image)
         self.image_label = tk.Label(self.image_frame, image=photo)
         self.image_label.image = photo  # Mantener una referencia a la imagen para evitar que sea eliminada por el recolector de basura
-        self.image_label.pack(side="top")
+        self.image_label.pack(side="top", padx=10, pady=10)
 
     def create_button(self):
-        self.button = tk.Button(self.image_frame, text="Imprimir descripción", command=self.print_text)
+        self.button = tk.Button(self.image_frame, text="Imprimir descripción", command=self.print_text,bg="#4CAF50", fg="white", relief="flat", width=10)
         self.button.pack(side="top")
 
-        self.regresar_button = tk.Button(self.image_frame, text="Regresar", command=self.regresar_pri)
+        self.regresar_button = tk.Button(self.image_frame, text="Regresar", command=self.regresar_pri, bg="#FF5252", fg="white", relief="flat", width=10)
         self.regresar_button.pack(side="top")
 
     def regresar_pri(self):
