@@ -60,32 +60,37 @@ class Application(tk.Frame):
             self.respuesta5 = "Educación"
             # self.boton_para_validacion()
 
-    # def boton_para_validacion(self):
-
     def validacion(self):
-        self.archivo = "datos.pickle"
-        try:
-            with open(self.archivo, "rb") as f:
-                self.datos = pickle.load(f)
-        except FileNotFoundError:
-            self.datos = {}
-        
-        false = []
-
-        # COMPROBAR SI ESTA LO QUE BUSCO DE ACUERDO A LOS PARÁMETROS 
-        for clave, valor in self.datos.items():
-            self.valores_recorridos(clave,valor)
-            # print(self.valor)
-            print(f"aquí es  lo que determinará la parte de {self.valor}")  
-            false.append(self.valor)
-
-        print(false)
-
-        if any(false):
-            None
+                # Verificar si no se ha seleccionado ninguna opción
+        if self.question1_respuesta.get() == "Ninguno" or self.question2_respuesta.get() == "Ninguno" or self.question3_respuesta.get() == "Ninguno" or self.question4_respuesta.get() == "Ninguno" or self.question5_respuesta.get() == "Ninguno":
+            messagebox.showerror("Error", "Debe seleccionar todas las opciones para realizar la consulta.")
+            return
         else:
-            self.validar_for()
-        
+            self.archivo = "datos.pickle"
+            try:
+                with open(self.archivo, "rb") as f:
+                    self.datos = pickle.load(f)
+            except FileNotFoundError:
+                self.datos = {}
+            
+            false = []
+
+            # COMPROBAR SI ESTA LO QUE BUSCO DE ACUERDO A LOS PARÁMETROS 
+            for clave, valor in self.datos.items():
+                self.valores_recorridos(clave,valor)
+                # print(self.valor)
+                print(f"aquí es  lo que determinará la parte de {self.valor}")  
+                false.append(self.valor)
+
+            print(false)
+
+            if any(false):
+                None
+            else:
+                self.validar_for()
+            
+            self.validacion_button.pack_forget()
+            
     def valores_recorridos(self, clave, valor):
         print(clave)
         print(valor)
@@ -137,7 +142,7 @@ class Application(tk.Frame):
         self.question1_respuesta.trace("w", self.on_question1_respuesta_changed)
 
         self.question1_label = tk.Label(self, text="¿Prefieres una aplicación gratuita (SI) o estás dispuesto a pagar por características adicionales (NO)?")
-        self.question1_label.config(font=("Arial", 11, "bold")) 
+        self.question1_label.config(font=("Arial", 11, "bold"), wraplength=400) 
         self.question1_label.pack(side="top")
 
         self.question1_respuesta_si = tk.Radiobutton(self, text="Sí", variable=self.question1_respuesta, value="Sí")
@@ -155,7 +160,7 @@ class Application(tk.Frame):
         self.question4_respuesta.trace("w", self.on_question4_respuesta_changed)
 
         self.question4_label = tk.Label(self, text="¿Cuántas estrellas tendría que tener la aplicación para que la descargues, considerando que 5 es el más alto?")
-        self.question4_label.config(font=("Arial", 11, "bold")) 
+        self.question4_label.config(font=("Arial", 11, "bold"), wraplength=400) 
         self.question4_label.pack(side="top")
 
         self.question4_respuesta_menosde4 = tk.Radiobutton(self, text="Menos de 4", variable=self.question4_respuesta, value="Menos de 4")
@@ -177,7 +182,7 @@ class Application(tk.Frame):
         self.question3_respuesta.trace("w", self.on_question3_respuesta_changed)
 
         self.question3_label = tk.Label(self, text="¿Qué tan estable es tu internet?")
-        self.question3_label.config(font=("Arial", 11, "bold")) 
+        self.question3_label.config(font=("Arial", 11, "bold"), wraplength=400) 
         self.question3_label.pack(side="top")
 
         self.question3_respuesta_falla = tk.Radiobutton(self, text="Falla", variable=self.question3_respuesta, value="Falla")
@@ -200,7 +205,7 @@ class Application(tk.Frame):
         self.question2_respuesta.trace("w", self.on_question2_respuesta_changed)
 
         self.question2_label = tk.Label(self, text="¿Qué edad tiene el usuario?")
-        self.question2_label.config(font=("Arial", 11, "bold")) 
+        self.question2_label.config(font=("Arial", 11, "bold"), wraplength=400) 
         self.question2_label.pack(side="top")
 
         self.question2_respuesta_menor = tk.Radiobutton(self, text="Menor de edad", variable=self.question2_respuesta, value="Menor de edad")
@@ -222,7 +227,7 @@ class Application(tk.Frame):
         self.question5_respuesta.trace("w", self.on_question5_respuesta_changed)
 
         self.question5_label = tk.Label(self, text="¿Qué tipo de categoría buscas?")
-        self.question5_label.config(font=("Arial", 11, "bold")) 
+        self.question5_label.config(font=("Arial", 11, "bold"), wraplength=400) 
         self.question5_label.pack(side="top")
 
         self.question5_respuesta_juegos = tk.Radiobutton(self, text="Juegos", variable=self.question5_respuesta, value="Juegos")
@@ -235,14 +240,13 @@ class Application(tk.Frame):
 
         self.question5_respuesta_label = tk.Label(self, textvariable=self.question5_respuesta)
 
-            # Botón para validación
+        # Botón para validación
         self.validacion_button_frame = tk.Frame(self)
         self.validacion_button_frame.pack(pady=10)
 
         self.validacion_button = tk.Button(self.validacion_button_frame, text="Buscar", command=self.validacion,  bg="#4CAF50", fg="white", relief="flat", width=10)
         self.validacion_button.config(font=("Arial", 10))
         self.validacion_button.pack()
-        
         
     def create_image_frame(self):
         self.image_frame = tk.Frame(self.master)
@@ -257,94 +261,128 @@ class Application(tk.Frame):
 
     def load_and_add_image(self):
         image = Image.open(f"./{self.ruta}")  # Reemplazar "imagen.png" con la ruta de la imagen
-        image = image.resize((125, 125))
+        original_width, original_height = image.size
+
+        # Calcular el nuevo tamaño manteniendo la proporción original
+        max_size = 125
+        if original_width > original_height:
+            new_width = max_size
+            new_height = int((max_size / original_width) * original_height)
+        else:
+            new_height = max_size
+            new_width = int((max_size / original_height) * original_width)
+
+        image = image.resize((new_width, new_height))
         photo = ImageTk.PhotoImage(image)
         self.image_label = tk.Label(self.image_frame, image=photo)
         self.image_label.image = photo  # Mantener una referencia a la imagen para evitar que sea eliminada por el recolector de basura
         self.image_label.pack(side="top", padx=10, pady=10)
 
     def create_button(self):
-        self.button = tk.Button(self.image_frame, text="Imprimir descripción", command=self.print_text,bg="#4CAF50", fg="white", relief="flat", width=10)
-        self.button.pack(side="top")
+        self.button = tk.Button(self.image_frame, text="Imprimir descripción", command=self.print_text,bg="#4CAF50", fg="white", relief="flat", width=20)
+        self.button.pack(side="left", anchor = "w")
 
         self.regresar_button = tk.Button(self.image_frame, text="Regresar", command=self.regresar_pri, bg="#FF5252", fg="white", relief="flat", width=10)
-        self.regresar_button.pack(side="top")
-
+        self.regresar_button.pack(side="right", anchor = "e")
+        
     def regresar_pri(self):
-        # Restablecer la variable a su valor predeterminado
-        self.question1_respuesta.set("Ninguno")
-        self.question2_respuesta.set("Ninguno")
-        self.question3_respuesta.set("Ninguno")
-        self.question4_respuesta.set("Ninguno")
-        self.question5_respuesta.set("Ninguno")
-        self.regresar_button.pack_forget()
+        self.setNingunoRespuesta()
+
         self.button.pack_forget()
         self.image_label.pack_forget()
         self.text_label.pack_forget()
         self.image_frame.pack_forget()
+
+        self.validacion_button.pack()  # Crear y mostrar nuevamente el botón "Buscar"
         self.regresar_button.pack_forget()
 
     def print_text(self):
         # Crear una nueva ventana
         self.popup_window = tk.Toplevel()
         self.popup_window.title("Descripción")
-        self.popup_window.geometry("200x100")
+        self.popup_window.geometry("400x200")
+        self.popup_window.config(bg="white")
 
         # Agregar una etiqueta con el texto a imprimir
-        self.print_label = tk.Label(self.popup_window, text=self.descripcion, wraplength=180)
-        self.print_label.pack(pady=10)
+        self.print_label = tk.Label(self.popup_window, text=self.descripcion, wraplength=380, font=("Arial", 12), bg="white")
+        self.print_label.pack(pady=20)
 
         # Agregar un botón para cerrar la ventana flotante
-        self.close_button = tk.Button(self.popup_window,text="Cerrar", command=self.popup_window.destroy)
+        self.close_button = tk.Button(self.popup_window, text="Cerrar", command=self.popup_window.destroy, bg="#FF5252", fg="white", relief="flat", width=10, font=("Arial", 10))
         self.close_button.pack(pady=10)
 
     def create_textboxes(self):
-        # Cuadros de texto
-        self.textbox1_label = tk.Label(self, text="Nombre de la aplicación:")
+        # Estilos para los cuadros de texto
+        textbox_style = {
+            "font": ("Arial", 10),
+            "width": 30,
+            "borderwidth": 2,
+            "relief": "groove"
+        }
+
+        # Cuadro de texto 1
+        self.textbox1_label = tk.Label(self, text="Nombre de la aplicación:", font=("Arial", 11, "bold"))
         self.textbox1_label.pack()
 
-        self.textbox1 = tk.Entry(self)
-        self.textbox1.pack()
+        self.textbox1 = tk.Entry(self, **textbox_style)
+        self.textbox1.pack(pady=5)
 
-        self.textbox2_label = tk.Label(self, text="Inserta descripción:")
+        # Cuadro de texto 2
+        self.textbox2_label = tk.Label(self, text="Inserta descripción:", font=("Arial", 11, "bold"))
         self.textbox2_label.pack()
 
-        self.textbox2 = tk.Entry(self)
-        self.textbox2.pack()
+        self.textbox2 = tk.Entry(self, **textbox_style)
+        self.textbox2.pack(pady=5)
 
-        self.textbox3_label = tk.Label(self, text="Inserta ruta de la imágen:")
+        # Cuadro de texto 3
+        self.textbox3_label = tk.Label(self, text="Inserta ruta de la imagen:", font=("Arial", 11, "bold"))
         self.textbox3_label.pack()
 
-        self.textbox3 = tk.Entry(self)
-        self.textbox3.pack()
+        self.textbox3 = tk.Entry(self, **textbox_style)
+        self.textbox3.pack(pady=5)
+
+        # Mostrar ventana de aviso
+        messagebox.showinfo("AVISO", "Si eres experto, rellena los datos. Si no, solo presiona el botón Regresar a tu Derecha.")
 
     def create_buttons(self):
         # Botones
-        self.guardar_button = tk.Button(self, text="Guardar", command=self.guardar_respuestas)
-        self.guardar_button.pack(side="left")
+        self.guardar_button = tk.Button(self, text="Guardar", command=self.guardar_respuestas,bg="#4CAF50", fg="white", relief="flat", width=10)
+        self.guardar_button.pack(side="left", anchor = "w")
 
-        self.regresar_button = tk.Button(self, text="Regresar", command=self.regresar)
-        self.regresar_button.pack(side="right")
+        self.regresar_button = tk.Button(self, text="Regresar", command=self.regresar, bg="#FF5252", fg="white", relief="flat", width=10)
+        self.regresar_button.pack(side="right", anchor = "e")
 
     def guardar_respuestas(self):
+        # Obtener los valores de los cuadros de texto
+        nombre_aplicacion = self.textbox1.get()
+        descripcion = self.textbox2.get()
+        ruta_imagen = self.textbox3.get()
 
-        # guardar los valores en un diccionario
-        nombre = self.textbox1.get()
-        atributos = [self.respuesta1,self.respuesta2,self.respuesta3,self.respuesta4,self.respuesta5,self.textbox2.get(),self.textbox3.get()]
+        # Verificar si algún cuadro de texto está vacío
+        if not nombre_aplicacion or not descripcion or not ruta_imagen:
+            messagebox.showerror("Error", "Debes rellenar todos los datos.")
+            return
 
-        # Agregamos la información al diccionario
-        self.datos[nombre] = atributos
+        else:
 
-        # Guardamos el diccionario en el self.archivo
-        with open(self.archivo, "wb") as f:
-            pickle.dump(self.datos, f)
+            # guardar los valores en un diccionario
+            nombre = self.textbox1.get()
+            atributos = [self.respuesta1,self.respuesta2,self.respuesta3,self.respuesta4,self.respuesta5,self.textbox2.get(),self.textbox3.get()]
 
-        self.regresar()
+            # Agregamos la información al diccionario
+            self.datos[nombre] = atributos
 
-        # Mostrar un mensaje de confirmación
-        messagebox.showinfo("Respuestas guardadas", "Las respuestas han sido guardadas correctamente.")
+            # Guardamos el diccionario en el self.archivo
+            with open(self.archivo, "wb") as f:
+                pickle.dump(self.datos, f)
+
+            self.regresar()
+
+            # Mostrar un mensaje de confirmación
+            messagebox.showinfo("Respuestas guardadas", "Las respuestas han sido guardadas correctamente.")
 
     def regresar(self):
+        self.setNingunoRespuesta()
         # Ocultar los cuadros de texto y los botones
         self.textbox1_label.pack_forget()
         self.textbox1.pack_forget()
@@ -354,6 +392,17 @@ class Application(tk.Frame):
         self.textbox3.pack_forget()
         self.guardar_button.pack_forget()
         self.regresar_button.pack_forget()
+
+        self.validacion_button.pack()  # Crear y mostrar nuevamente el botón "Buscar"
+        self.regresar_button.pack_forget()
+
+    def setNingunoRespuesta(self):
+        # Restablecer la variable a su valor predeterminado
+        self.question1_respuesta.set("Ninguno")
+        self.question2_respuesta.set("Ninguno")
+        self.question3_respuesta.set("Ninguno")
+        self.question4_respuesta.set("Ninguno")
+        self.question5_respuesta.set("Ninguno")
         
 root = tk.Tk()
 app = Application(master=root)

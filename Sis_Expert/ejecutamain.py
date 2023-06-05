@@ -19,7 +19,29 @@ window = tk.Tk()
 window.title("Ventana de Inicio")
 window.configure(bg="#F0F0F0")
 
-descripcion = """Este sistema utiliza un enfoque inteligente para recomendar aplicaciones de juegos y educativas.\n\nSe basa en tres factores principales:\n\n• Puntaje de estrellas, velocidad de internet y restricciones de edad.\n\nEl puntaje de estrellas indica la calidad y popularidad de una aplicación. Cuanto mayor sea el puntaje, mejor será la experiencia.\n\nLa velocidad de internet se considera para asegurar una experiencia fluida y sin interrupciones al utilizar las aplicaciones.\n\nAdemás, se tienen en cuenta las restricciones de edad para garantizar que las aplicaciones sean adecuadas para el usuario.\n\nAl presionar 'Continuar', el programa iniciará y presentará recomendaciones personalizadas basadas en estos criterios, brindando a los usuarios una selección óptima de aplicaciones de juegos y educación.\n\nUna vez que presiones 'Continuar' en la interfaz, el programa se iniciará y comenzará a proporcionar las recomendaciones según los criterios mencionados."""
+descripcion = """Este sistema inteligente te ayuda a descubrir aplicaciones de juegos y educativas de manera fácil y personalizada.
+
+El sistema se basa en cinco factores principales para recomendarte las mejores opciones:
+
+1. Gratis o de Pago: Puedes elegir entre aplicaciones gratuitas o aquellas que ofrecen características adicionales a cambio de un pago.
+
+2. Puntaje de Estrellas: Las aplicaciones con mayor puntaje tienen una mejor calidad y son más populares entre los usuarios.
+
+3. Calidad de Internet: El sistema considera tu conexión a Internet para recomendarte aplicaciones que se ajusten a tus necesidades y no tengan problemas de carga.
+
+4. Restricciones de Edad: Las aplicaciones recomendadas son adecuadas para tu edad, brindándote una experiencia segura y adecuada.
+
+5. Enfoque en Juegos o Educación: Puedes elegir si buscas aplicaciones de juegos entretenidos o aplicaciones educativas.
+
+Cuando presiones 'Continuar', el sistema iniciará y te presentará recomendaciones personalizadas basadas en estos criterios. Obtendrás una selección óptima de aplicaciones de juegos y educación que se ajusten a tus preferencias y necesidades.
+
+¡Explora nuevas aplicaciones y disfruta de una experiencia enriquecedora! Al presionar 'Continuar' en la interfaz, el sistema comenzará a brindarte las recomendaciones según los criterios mencionados.
+
+NOTA: 
+En caso de no encontrar aplicación se desplegará una ventana para el Experto que se encargará de rellenar la información, si no es experto NO LO RELLENE
+"""
+
+
 
 # Crear un widget de texto
 text_label = tk.Label(window, text=descripcion, font=("Arial", 12), wraplength=400, justify="left", bg="#F0F0F0")
