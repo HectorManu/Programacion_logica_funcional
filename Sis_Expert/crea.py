@@ -1,10 +1,18 @@
 import pickle
 
-# Crear un diccionario
-datos = {
-    "Monument Valley": ["No", "Menor de edad","Falla","Más de 4.5","Juegos","Monument Valley es un cautivador juego de rompecabezas en el que debes manipular arquitecturas imposibles para guiar a una princesa a través de un mundo surrealista y visualmente impresionante.", "/Monument_Valley.jpeg"]
-}
+def eliminaUnaApp(name):
+    # Cargar el diccionario desde el archivo
+    with open("datos.pickle", "rb") as archivo:
+        datos = pickle.load(archivo)
 
-# Guardar el diccionario en un archivo
-with open("datos.pickle", "wb") as archivo:
-    pickle.dump(datos, archivo)
+    # Verificar si "Manuals Cars" está en el diccionario
+    if name in datos:
+        # Eliminar la entrada correspondiente a name
+        del datos[name]
+
+    # Guardar el diccionario actualizado en el archivo
+    with open("datos.pickle", "wb") as archivo:
+        pickle.dump(datos, archivo)
+
+name = "Bubble Shooter Rainbow"
+eliminaUnaApp(name)

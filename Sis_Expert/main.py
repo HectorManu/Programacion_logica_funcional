@@ -264,7 +264,7 @@ class Application(tk.Frame):
         original_width, original_height = image.size
 
         # Calcular el nuevo tamaño manteniendo la proporción original
-        max_size = 125
+        max_size = 225
         if original_width > original_height:
             new_width = max_size
             new_height = int((max_size / original_width) * original_height)
